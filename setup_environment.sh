@@ -47,7 +47,7 @@ sudo mysql -e "EXIT;"
 echo "Setting up Git..."
 git --version
 git config --global user.name "Jude Adolfo"
-git config --global user.email "judea3264g@gmail.com"
+git config --global user.email "judea3264@gmail.com"
 git config --list
 
 # Update and Upgrade
