@@ -43,6 +43,10 @@ sudo mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_passwo
 sudo mysql -e "FLUSH PRIVILEGES;"
 sudo mysql -e "EXIT;"
 
+# MySQL Workbench
+echo "Installing MySQL Workbench"
+sudo snap install mysql-workbench-community
+
 # Git Setup
 echo "Setting up Git..."
 git --version
