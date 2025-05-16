@@ -18,7 +18,7 @@ node -v && npm -v
 
 # Add PHP repository and update package list
 echo "Adding PHP repository and updating package list..."
-sudo add-apt-repository ppa:ondrej/php
+sudo add-apt-repository ppa:ondrej/php -y
 sudo apt update
 
 # Install PHP 8.4 with extensions
@@ -61,15 +61,21 @@ sudo snap install code --classic
 # Install Firefox Developer Edition
 echo "Installing Firefox Developer Edition..."
 FIREFOX_DIR="/opt/firefox-developer"
-wget -O firefox-developer.tar.bz2 "https://download.mozilla.org/?product=firefox-devedition-latest-ssl&os=linux64&lang=en-US"
-sudo tar -xjf firefox-developer.tar.bz2 -C /opt/
-sudo mv /opt/firefox /opt/firefox-developer
-sudo ln -sf $FIREFOX_DIR/firefox /usr/local/bin/firefox-developer
-rm firefox-developer.tar.bz2
+ARCHIVE_FILE="firefox-developer.tar.xz"
 
-# Create desktop entry for Firefox Developer Edition
-echo "Creating desktop entry for Firefox Developer Edition..."
-cat <<EOF | sudo tee /usr/share/applications/firefox-developer.desktop > /dev/null
+# Download the file and manually name it
+curl -L "https://download.mozilla.org/?product=firefox-devedition-latest-ssl&os=linux64&lang=en-US" -o "$ARCHIVE_FILE"
+
+# Check if file exists and is not empty
+if [ -s "$ARCHIVE_FILE" ]; then
+    echo "Extracting $ARCHIVE_FILE..."
+    sudo tar -xJf "$ARCHIVE_FILE" -C /opt/
+    sudo mv /opt/firefox "$FIREFOX_DIR"
+    sudo ln -sf "$FIREFOX_DIR/firefox" /usr/local/bin/firefox-developer
+    rm "$ARCHIVE_FILE"
+
+    echo "Creating desktop entry for Firefox Developer Edition..."
+    cat <<EOF | sudo tee /usr/share/applications/firefox-developer.desktop > /dev/null
 [Desktop Entry]
 Name=Firefox Developer Edition
 Exec=/opt/firefox-developer/firefox %u
@@ -79,6 +85,11 @@ Type=Application
 Categories=Network;WebBrowser;
 StartupNotify=true
 EOF
+
+    echo "✅ Firefox Developer Edition installed successfully."
+else
+    echo "❌ Download failed or file is empty."
+fi
 
 # Install Python, pip, virtualenv, Django, Flask
 echo "Installing Python development tools..."
@@ -90,6 +101,24 @@ pip3 install virtualenv django flask
 echo "Verifying Python packages..."
 python3 --version
 pip3 show django flask virtualenv
+
+# Install MEGAsync
+echo "Installing MEGAsync..."
+wget https://mega.nz/linux/repo/xUbuntu_24.04/amd64/megasync-xUbuntu_24.04_amd64.deb
+sudo apt install ./megasync-xUbuntu_24.04_amd64.deb -y
+rm megasync-xUbuntu_24.04_amd64.deb
+
+# Install Google Chrome
+echo "Installing Google Chrome..."
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo apt install ./google-chrome-stable_current_amd64.deb -y
+rm google-chrome-stable_current_amd64.deb
+
+echo "Installing LibreOffice via snap..."
+sudo snap install libreoffice
+
+echo "Installing VLC"
+sudo snap install vlc
 
 # Update and Upgrade
 echo "Updating and upgrading system..."
