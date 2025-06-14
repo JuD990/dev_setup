@@ -131,10 +131,11 @@ fi
 echo "Installing Python tools..."
 sudo apt install python3-pip python3-venv -y
 pip3 install --upgrade pip
-pip3 install virtualenv django flask
+pip3 install virtualenv
+
 echo "Verifying Python packages..."
 python3 --version
-pip3 show django flask virtualenv
+pip3 show virtualenv
 
 # Install MEGAsync
 if ! command -v megasync &> /dev/null; then
