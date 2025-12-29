@@ -1,1 +1,1 @@
-# Personal Dev Setup with DevOps
+# Personal Dev Setup
