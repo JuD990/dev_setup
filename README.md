@@ -33,7 +33,7 @@ The engine follows a modular logic flow to ensure system stability:
 ### Linux (Fedora / KDE Neon / Ubuntu / WSL2)
 ```bash
 # Clone and execute
-git clone [https://github.com/JudeAdolfo/universal-dev-engine.git](https://github.com/JudeAdolfo/universal-dev-engine.git)
+git clone [https://github.com/JuD990/universal-dev-engine.git](https://github.com/JudeAdolfo/universal-dev-engine.git)
 cd universal-dev-engine
 chmod +x setup-linux.sh
 ./setup-linux.sh
