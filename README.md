@@ -1,38 +1,33 @@
-# 🚀 Universal Development Engine (UDE)
+# UDE: Universal Development Engine (Windows Module)
+# Purpose: Automated provisioning of .NET 8 and AWS cloud tools
 
-**UDE** is a cross-platform environment provisioning tool designed to eliminate configuration drift. It automates the setup of enterprise-grade development environments across **Linux (Fedora/WSL2)** and **Windows (PowerShell)**.
+Write-Host "🚀 UDE: Initializing Windows Environment..." -ForegroundColor Cyan
 
+# 1. Elevate to Admin if not already
+if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
+    Write-Warning "Please run this script as Administrator."
+    exit
+}
 
+# 2. Verify WinGet
+if (!(Get-Command winget -ErrorAction SilentlyContinue)) {
+    Write-Error "WinGet is missing. Install 'App Installer' from the MS Store."
+    exit
+}
 
-## 🛠 Strategic Purpose
-In high-velocity engineering teams, manual environment setup is a bottleneck. UDE reduces a 2-hour provisioning process into a single-command execution, ensuring that .NET 8, AWS CLI, and critical security tools are configured identically across all workstations.
+# 3. Define the Specialist Toolset
+$apps = @(
+    "Microsoft.DotNet.SDK.8", 
+    "Amazon.AWSCLI", 
+    "Git.Git",
+    "Microsoft.VisualStudioCode",
+    "Postman.Postman"
+)
 
-## ✨ Core Functionalities
-* **Cloud-Ready Provisioning:** Automates AWS CLI installation and environment variable mapping.
-* **Backend Stack Integration:** One-click setup for .NET 8 SDK, PHP/Laravel dependencies, and SQL drivers.
-* **Security Hardening:** Scripts include logic to manage SSH permissions and IAM credential directories securely.
-* **Cross-Platform Vision:** Modular architecture with native Bash scripts for Linux and a planned PowerShell module for Windows/Active Directory environments.
+# 4. Automated Install
+foreach ($app in $apps) {
+    Write-Host "📦 Provisioning $app..." -ForegroundColor Yellow
+    winget install --id $app --silent --accept-package-agreements --accept-source-agreements
+}
 
-## 🏗 System Architecture
-1. **Host Detection:** Identifies Kernel and Package Manager (DNF/APT/Winget).
-2. **Dependency Resolution:** Scans for existing binaries to prevent version conflicts.
-3. **Automated Deployment:** Fetches binaries from official mirrors and configures system paths.
-
-## 🚀 Usage
-### Linux (Fedora/WSL2)
-```bash
-chmod +x setup-linux.sh
-./setup-linux.sh
-
-📅 Roadmap
-[x] Initial Bash provisioning engine for Fedora.
-
-[ ] Current: PowerShell winget integration for Windows corporate laptops.
-
-[ ] Automated AWS IAM profile switcher.
-
-[ ] Docker-compose templates for local microservice testing.
-
-Author: Jude Christian Adolfo
-
-Focus: Backend Engineering & Cloud Automation
+Write-Host "✅ Environment Provisioned! Your terminal is ready for .NET & AWS development." -ForegroundColor Green
