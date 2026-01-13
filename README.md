@@ -1,5 +1,7 @@
 # 🚀 Universal Development Engine (UDE)
 
+![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
+![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20Windows-lightgrey)
 ![Bash](https://img.shields.io/badge/Shell_Script-121011?style=for-the-badge&logo=gnu-bash&logoColor=white)
 ![PowerShell](https://img.shields.io/badge/PowerShell-%235391FE.svg?style=for-the-badge&logo=powershell&logoColor=white)
 ![.NET 8](https://img.shields.io/badge/.NET_8-512BD4?style=for-the-badge&logo=dotnet&logoColor=white)
@@ -36,3 +38,23 @@ cd universal-dev-engine
 chmod +x setup-linux.sh
 ./setup-linux.sh
 
+### Windows (PowerShell)
+# Run as Administrator
+Set-ExecutionPolicy Bypass -Scope Process -Force
+./setup-windows.ps1
+
+⚙️ Managed Dependencies
+Tool,Purpose,Version
+.NET SDK,Enterprise Backend Dev,8.0+
+AWS CLI,Cloud Infrastructure Mgmt,Latest
+Git,Version Control,Latest
+Docker,Containerization (Planned),-
+
+📅 Development Roadmap
+[x] Phase 1: Core Bash provisioning engine for Fedora/RPM systems.
+[x] Phase 2: PowerShell winget integration for Windows/Enterprise environments.
+[ ] Phase 3: Automated AWS IAM profile switcher and SSO integration.
+[ ] Phase 4: Docker-compose templates for local microservice orchestration.
+
+Author: Jude Christian Adolfo
+Specialization: Backend Engineering | Cloud Architecture | Automation License: MIT
