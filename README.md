@@ -13,27 +13,36 @@
 In high-velocity engineering teams, manual environment setup is a bottleneck. UDE reduces a 2-hour manual provisioning process into a single-command execution. It ensures that the **.NET 8 SDK**, **AWS CLI**, and **Database Drivers** are configured identically across all workstations, reducing "it works on my machine" bugs.
 
 ## ✨ Core Functionalities
+* **Distro-Agnostic Abstraction:** Dynamically detects and utilizes `dnf`, `apt`, or `pacman` based on the host environment.
 * **Idempotent Execution:** Scripts safely check for existing binaries before attempting installation to prevent system bloat.
-* **Cloud-Native Provisioning:** Automates AWS CLI installation and handles environment variable mapping for local cloud development.
-* **Backend Stack Integration:** One-click setup for the .NET 8 SDK, PHP/Laravel dependencies, and SQL relational drivers.
-* **Security Hardening:** Implements logic to manage SSH permissions and IAM credential directories according to least-privilege principles.
+* **Full-Stack Provisioning:** Automates the installation of .NET 8, Node.js (v22), PHP 8.4, and SQL engines (MySQL/PostgreSQL).
+* **Cloud-Native Ready:** Configures AWS CLI and Docker environments for immediate serverless/containerized development.
 
 ## 🏗 System Architecture
 The engine follows a modular logic flow to ensure system stability:
 
 
 
-1.  **Host Detection:** Dynamically identifies the Kernel and active Package Manager (`dnf`, `apt`, or `winget`).
-2.  **Dependency Mapping:** Scans the system `$PATH` for existing tool versions to prevent conflicts.
-3.  **Automated Deployment:** Securely fetches binaries from official mirrors and configures system environment variables.
-4.  **Verification:** Performs post-install integrity checks on all critical SDKs.
+1.  **Host Detection:** Identifies Kernel, DE (KDE/Gnome), and Package Manager.
+2.  **Dependency Mapping:** Scans `$PATH` for existing tool versions to avoid redundant installs.
+3.  **Cross-Platform Deployment:** Securely fetches binaries and configures environment aliases.
+4.  **Verification:** Runs post-install integrity checks (e.g., `dotnet --version`).
 
 ## 🚀 Usage
 
-### Linux (Fedora / KDE Neon / WSL2)
+### Linux (Fedora / KDE Neon / Ubuntu / WSL2)
 ```bash
 # Clone and execute
 git clone [https://github.com/JudeAdolfo/universal-dev-engine.git](https://github.com/JudeAdolfo/universal-dev-engine.git)
 cd universal-dev-engine
 chmod +x setup-linux.sh
 ./setup-linux.sh
+```
+
+### Windows (PowerShell)
+
+```powershell
+# Run as Administrator
+Set-ExecutionPolicy Bypass -Scope Process -Force
+./setup-windows.ps1
+```
