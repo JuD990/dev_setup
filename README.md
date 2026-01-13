@@ -37,24 +37,3 @@ git clone [https://github.com/JudeAdolfo/universal-dev-engine.git](https://githu
 cd universal-dev-engine
 chmod +x setup-linux.sh
 ./setup-linux.sh
-
-### Windows (PowerShell)
-# Run as Administrator
-Set-ExecutionPolicy Bypass -Scope Process -Force
-./setup-windows.ps1
-
-⚙️ Managed Dependencies
-Tool,Purpose,Version
-.NET SDK,Enterprise Backend Dev,8.0+
-AWS CLI,Cloud Infrastructure Mgmt,Latest
-Git,Version Control,Latest
-Docker,Containerization (Planned),-
-
-📅 Development Roadmap
-[x] Phase 1: Core Bash provisioning engine for Fedora/RPM systems.
-[x] Phase 2: PowerShell winget integration for Windows/Enterprise environments.
-[ ] Phase 3: Automated AWS IAM profile switcher and SSO integration.
-[ ] Phase 4: Docker-compose templates for local microservice orchestration.
-
-Author: Jude Christian Adolfo
-Specialization: Backend Engineering | Cloud Architecture | Automation License: MIT
