@@ -1,43 +1,5 @@
 #!/bin/bash
 
-# Global password variable
-SUDO_PASSWORD=""
-PASSWORD_VALIDATED=false
-
-# Colors for output
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
-NC='\033[0m' # No Color
-
-# Function to prompt and validate sudo password
-validate_sudo_password() {
-    local max_attempts=3
-    local attempt=1
-    
-    echo -e "${YELLOW}This script requires sudo privileges.${NC}"
-    
-    while [ $attempt -le $max_attempts ]; do
-        echo -n "Enter sudo password (attempt $attempt/$max_attempts): "
-        read -s SUDO_PASSWORD
-        echo  # New line after hidden input
-        
-        # Test the password
-        if echo "$SUDO_PASSWORD" | sudo -S true 2>/dev/null; then
-            echo -e "${GREEN}✓ Password validated successfully!${NC}"
-            PASSWORD_VALIDATED=true
-            return 0
-        else
-            echo -e "${RED}✗ Incorrect password.${NC}"
-            ((attempt++))
-            SUDO_PASSWORD=""  # Clear wrong password
-        fi
-    done
-    
-    echo -e "${RED}Maximum attempts reached. Exiting.${NC}"
-    exit 1
-}
-
 echo -e "\nUpdating and upgrading system...\n"
 sudo apt update && sudo apt upgrade -y
 
