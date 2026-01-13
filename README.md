@@ -23,3 +23,16 @@ In high-velocity engineering teams, manual environment setup is a bottleneck. UD
 ```bash
 chmod +x setup-linux.sh
 ./setup-linux.sh
+
+📅 Roadmap
+[x] Initial Bash provisioning engine for Fedora.
+
+[ ] Current: PowerShell winget integration for Windows corporate laptops.
+
+[ ] Automated AWS IAM profile switcher.
+
+[ ] Docker-compose templates for local microservice testing.
+
+Author: Jude Christian Adolfo
+
+Focus: Backend Engineering & Cloud Automation
