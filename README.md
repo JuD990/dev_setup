@@ -44,7 +44,7 @@ chmod +x setup_dev.sh
 ```powershell
 # Run as Administrator
 Set-ExecutionPolicy Bypass -Scope Process -Force
-./setup-windows.ps1
+./setup_windows.ps1
 ```
 
 ---
