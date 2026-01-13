@@ -46,3 +46,21 @@ chmod +x setup_dev.sh
 Set-ExecutionPolicy Bypass -Scope Process -Force
 ./setup-windows.ps1
 ```
+## 📅 Development Roadmap
+
+- [x] **Phase 1:** Core Bash engine with distro-detection logic
+- [x] **Phase 2:** PowerShell `winget` module for Windows environments
+- [ ] **Phase 3:** Automated AWS IAM profile switcher and SSO integration
+- [ ] **Phase 4:** Docker Compose templates for local microservice orchestration
+
+---
+
+## 👤 Author
+
+**Jude Christian Adolfo**
+
+**Specialization:**  
+Backend Engineering • Cloud Architecture • Automation
+
+## 📄 License
+This project is licensed under the **MIT License**.
